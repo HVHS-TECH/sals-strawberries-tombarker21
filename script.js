@@ -1,12 +1,15 @@
 
 console.log("Running Sal's Strawberries")
+const HTML_OUTPUT = document.getElementById("statusMessage");
 
 function writeForm(){
     // Get the form data
     const favoriteFruit = document.getElementById("favoriteFruit").value;
+    const name = document.getElementById("name").value;
      firebase.database().ref('/').set(
     {
-      message: "favouriteFruit"
+      favFruit: {favoriteFruit},
+      name: {name}
     }
   )
   console.log("Reading message");
@@ -15,7 +18,19 @@ function writeForm(){
 }
 function displayRead(snapshot) {
   console.log("Running displayRead(), the message is: " + snapshot.val())
-  HTML_OUTPUT.innerHTML = snapshot.val();
-  console.log(snapshot.val())
+  favFruit = snapshot.val()
+  HTML_OUTPUT.innerHTML = favFruit.favoriteFruit;
+  console.log(favFruit.favoriteFruit)
+}
+
+
+function display(snapshot) {
+  var dbData = snapshot.val();
+  if (dbData == null) { // if there is no data, dbData will be null.
+    console.log('There was no record when trying to read the message');
+  }
+  else {
+    console.log("The message is: " + dbData)
+  }
 }
 
