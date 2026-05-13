@@ -2,18 +2,21 @@
 console.log("Running Sal's Strawberries")
 const HTML_OUTPUT = document.getElementById("statusMessage");
 
-function writeForm(){
-    // Get the form data
-    const favoriteFruit = document.getElementById("favoriteFruit").value;
-    const name = document.getElementById("name").value;
-     firebase.database().ref('/').set(
+function writeForm() {
+  // Get the form data
+  const favoriteFruit = document.getElementById("favoriteFruit").value;
+  const name = document.getElementById("name").value;
+  const fruitQuantity = document.getElementById("fruitQuantity").value;
+  firebase.database().ref('/').set(
     {
-      favFruit: {favoriteFruit},
-      name: {name}
+      name,
+      favoriteFruit,
+      fruitQuantity
+
     }
   )
   console.log("Reading message");
-  firebase.database().ref('/').child('message').once('value', displayRead, fb_error);
+  firebase.database().ref('/').once('value', displayRead, fb_error);
   console.log("Leaving simpleRead")
 }
 function displayRead(snapshot) {
@@ -21,6 +24,7 @@ function displayRead(snapshot) {
   favFruit = snapshot.val()
   HTML_OUTPUT.innerHTML = favFruit.favoriteFruit;
   console.log(favFruit.favoriteFruit)
+  console.log(favFruit)
 }
 
 
