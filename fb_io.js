@@ -40,6 +40,7 @@ function fb_popupLogin() {
   });
 }
 
-function fb_error(){
-    // Don't forget your error handling!
+function fb_error(error) {
+  console.log("There was an error reading the message");
+  console.error(error);
 }

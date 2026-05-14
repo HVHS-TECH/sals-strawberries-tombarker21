@@ -4,14 +4,19 @@ const HTML_OUTPUT = document.getElementById("statusMessage");
 
 function writeForm() {
   // Get the form data
+  let UID = GLOBAL_user.uid
+  let email = GLOBAL_user.email 
   const favoriteFruit = document.getElementById("favoriteFruit").value;
   const name = document.getElementById("name").value;
   const fruitQuantity = document.getElementById("fruitQuantity").value;
-  firebase.database().ref('/').set(
+
+
+  firebase.database().ref('/' + UID).set(
     {
       name,
       favoriteFruit,
-      fruitQuantity
+      fruitQuantity,
+      email
 
     }
   )
@@ -24,7 +29,7 @@ function displayRead(snapshot) {
   favFruit = snapshot.val()
   HTML_OUTPUT.innerHTML = favFruit.favoriteFruit;
   console.log(favFruit.favoriteFruit)
-  console.log(favFruit)
+  console.log(snapshot.val())
 }
 
 
