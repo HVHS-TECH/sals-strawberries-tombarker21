@@ -29,7 +29,7 @@ function displayRead(snapshot) {
   favFruit = snapshot.val()
   HTML_OUTPUT.innerHTML = favFruit.favoriteFruit;
   console.log(favFruit.favoriteFruit)
-  console.log(snapshot.val())
+  //console.log(snapshot.val())
 }
 
 
