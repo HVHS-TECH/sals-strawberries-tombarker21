@@ -1,7 +1,10 @@
 
 console.log("Running Sal's Strawberries")
 const HTML_OUTPUT = document.getElementById("statusMessage");
-
+let userName;
+let userEmail;
+let userFruit;
+let userQuantity;  
 function writeForm() {
   // Get the form data
   let UID = GLOBAL_user.uid
@@ -21,15 +24,17 @@ function writeForm() {
     }
   )
   console.log("Reading message");
-  firebase.database().ref('/').once('value', displayRead, fb_error);
+  firebase.database().ref('/'+ UID).once('value', displayRead, fb_error);
   console.log("Leaving simpleRead")
 }
 function displayRead(snapshot) {
   console.log("Running displayRead(), the message is: " + snapshot.val())
-  favFruit = snapshot.val()
-  HTML_OUTPUT.innerHTML = favFruit.favoriteFruit;
-  console.log(favFruit.favoriteFruit)
-  //console.log(snapshot.val())
+  data = snapshot.val()
+  userName = data["name"];
+  userEmail = data["email"];
+  userFruit = data["favoriteFruit"];
+  userQuantity = data["fruitQuantity"];
+
 }
 
 
@@ -42,4 +47,11 @@ function display(snapshot) {
     console.log("The message is: " + dbData)
   }
 }
+ 
+function generateEmail(){
+//console.log("Running displayRead(), the message is: " + snapshot.val())
+  HTML_OUTPUT.innerHTML ="To "+userEmail+ "<br> From Sals Strawberry Saloon <br><br>Hi, " + userName +"<br>This is Sal's Strawberry Saloon<br> We are contacting you to let you know that we are offering you a great deal for "+userQuantity+" " +userFruit+ "s"
+  
 
+}
+  
