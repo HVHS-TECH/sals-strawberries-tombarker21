@@ -19,10 +19,7 @@ function fb_handleLogin(_user) {
   if (_user) {
     console.log("User is logged in")
     GLOBAL_user = _user; // Save the user object to a global variable
-    console.log(GLOBAL_user.email)
-    console.log(GLOBAL_user.uid)
-    console.log(GLOBAL_user.displayName)
-    console.log(GLOBAL_user.photoURL)
+   
 
   } else {
     console.log("User is NOT logged in - Starting the popup process")
